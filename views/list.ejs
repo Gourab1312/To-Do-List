@@ -1,0 +1,33 @@
+<%- include("header") -%>
+
+<div class="box" id="heading">
+  <h1><%= listTitle %></h1>
+</div>
+
+<div class="box">
+  <% newListItems.forEach(function(item){ %>
+    <!-- delete route is used to delete the elements when the checkbox is ticked off -->
+  <form action="/delete" method="post">
+    <div class="item">
+      <!-- value is basically binding the checkbox clicked with the id of the element whose checkbox is being clicked thus we can now delete that item  -->
+      <input type="checkbox" name="checkbox" value = "<%= item._id%>" onchange="this.form.submit()" />
+      <!-- since now in the database we only want the name field of each block to be displayed not the entireity -->
+      <p><%= item.name %></p>
+    </div>
+    <input type="hidden" name="listName" value="<%= listTitle %>"> </input>
+  </form>
+  <% }); %>
+
+  <!-- home route is used for adding the new elements -->
+  <form class="item" action="/" method="post">
+    <input
+      type="text"
+      name="newItem"
+      placeholder="New Item"
+      autocomplete="off"
+    />
+    <button type="submit" name="list" value="<%= listTitle %>">+</button>
+  </form>
+</div>
+
+<%- include("footer") -%>
