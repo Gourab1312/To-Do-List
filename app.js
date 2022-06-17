@@ -171,7 +171,7 @@ app.get("/about", function (req, res) {
 
 // if heroku gives a port by process.env then take it else locally start it at port 3000
 let port = process.env.PORT;
-if(port == null || portt == ""){
+if (port == null || port == "") {
   port = 3000;
 }
 
